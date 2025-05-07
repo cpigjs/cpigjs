@@ -1,0 +1,10 @@
+{
+"title": "Implications in Fair Division of Indivisible Items",
+"funcToFormUrl": "../funcToForm",
+"dotvizUrl": "../dotviz/viz.js",
+"familyFile": "setFamily.json",
+"dataFiles": ["data.json"],
+"prefixHTML": "",
+"suffixHTML": "",
+"config": {"texRefsUrl": "texRefs.json"}
+}

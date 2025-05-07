@@ -1,0 +1,109 @@
+{
+    "type": "prod",
+    "info": {"name": "root", "label": "fair division setting"},
+    "parts": [
+        {
+            "type": "dag",
+            "info": {"name": "valuation", "label": "valuation function type"},
+            "default": "general",
+            "values": [
+                {"name": "general"},
+                {"name": "additive", "label": "additive"},
+                {"name": "subadd", "label": "subadditive"},
+                {"name": "superadd", "label": "superadditive"},
+                {"name": "submod", "label": "submodular"},
+                {"name": "supermod", "label": "supermodular"},
+                {"name": "xos", "label": "XOS", "text": "fractionally subadditive"},
+                {"name": "cancelable"},
+                {"name": "unitDemand", "label": "unit demand"},
+                {"name": "singleItem", "label": "single item"}
+            ],
+            "containments": [
+                ["general", "subadd"],
+                ["general", "superadd"],
+                ["general", "cancelable"],
+                ["subadd", "xos"],
+                ["xos", "submod"],
+                ["superadd", "supermod"],
+                ["submod", "additive"],
+                ["supermod", "additive"],
+                ["cancelable", "additive"],
+                ["submod", "unitDemand"],
+                ["cancelable", "unitDemand"],
+                ["cancelable", "singleItem"],
+                ["additive", "singleItem"],
+                ["unitDemand", "singleItem"]
+            ]
+        },
+        {
+            "type": "dag",
+            "info": {"name": "marginal", "label": "marginal values"},
+            "default": "general",
+            "values": [
+                {"name": "general"},
+                {"name": "nonneg", "label": "non-negative (goods)"},
+                {"name": "nonpos", "label": "non-positive (chores)"},
+
+                {"name": "dblMono", "label": "doubly monotone"},
+                {"name": "dblStrMono", "label": "doubly strictly monotone"},
+                {"name": "positive"},
+                {"name": "negative"},
+
+                {"name": "nonnegBival", "label": "non-negative bivalued"},
+                {"name": "positiveBival", "label": "positive bivalued"},
+                {"name": "nonposBival", "label": "non-positive bivalued"},
+                {"name": "negativeBival", "label": "negative bivalued"},
+                {"name": "mixedBival", "label": "mixed bivalued"},
+                {"name": "mixedBivalDblMono", "label": "mixed bivalued dblMono"},
+
+                {"name": "tribool", "label": "{−1, 0, 1}"},
+                {"name": "binary", "label": "{0, 1}"},
+                {"name": "negBinary", "label": "{−1, 0}"},
+                {"name": "unit", "label": "{1}"},
+                {"name": "negUnit", "label": "{−1}"}
+            ],
+            "containments": [
+                ["general", "dblMono"],
+                ["dblMono", "dblStrMono"],
+                ["dblMono", "nonneg"],
+                ["dblMono", "nonpos"],
+                ["nonneg", "positive"],
+                ["nonpos", "negative"],
+                ["dblStrMono", "positive"],
+                ["dblStrMono", "negative"],
+                ["dblStrMono", "mixedBivalDblMono"],
+
+                ["general", "mixedBival"],
+                ["mixedBival", "mixedBivalDblMono"],
+                ["nonneg", "nonnegBival"],
+                ["nonpos", "nonposBival"],
+                ["positive", "positiveBival"],
+                ["negative", "negativeBival"],
+                ["nonnegBival", "positiveBival"],
+                ["nonposBival", "negativeBival"],
+
+                ["general", "tribool"],
+                ["tribool", "binary"],
+                ["tribool", "negBinary"],
+                ["nonnegBival", "binary"],
+                ["nonposBival", "negBinary"],
+                ["binary", "unit"],
+                ["positiveBival", "unit"],
+                ["negBinary", "negUnit"],
+                ["negativeBival", "negUnit"]
+            ]
+        },
+        {
+            "type": "bool",
+            "info": {"name": "identical", "label": "identical valuations"}
+        },
+        {
+            "type": "bool",
+            "info": {"name": "twoAg", "label": "only 2 agents"}
+        },
+        {
+            "type": "bool",
+            "info": {"name": "eqEnt", "label": "equal entitlements"}
+        }
+    ]
+}
